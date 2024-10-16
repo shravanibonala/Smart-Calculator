@@ -1,0 +1,62 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class SmartCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean continueCalculation = true;
+        while (continueCalculation) {
+            System.out.println("Smart Calculator");
+            System.out.println("1. Basic Operations");
+            System.out.println("2. Clear");
+            System.out.println("3. Exit");
+            System.out.print("Choose an option: ");
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    performBasicOperations(scanner);
+                    break;
+                case 2:
+                    System.out.println("Cleared.");
+                    break;
+                case 3:
+                    continueCalculation = false;
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid option. Please choose a valid option.");
+            }
+        }
+    }
+    private static void performBasicOperations(Scanner scanner) {
+        System.out.print("Enter the first number: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Enter the operation (+, -, *, /): ");
+        char operation = scanner.next().charAt(0);
+        System.out.print("Enter the second number: ");
+        double num2 = scanner.nextDouble();
+        double result = 0;
+        switch (operation) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 != 0) {
+                    result = num1 / num2;
+                } else {
+                    System.out.println("Error: Division by zero is not allowed.");
+                    return;
+                }
+                break;
+            default:
+                System.out.println("Invalid operation. Please choose a valid operation.");
+                return;
+        }
+        System.out.println("Result: " + result);
+    }
+}
